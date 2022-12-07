@@ -1,0 +1,53 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Release.Namespace }}
+rules:
+- apiGroups:
+  - monitoring.coreos.com
+  resources:
+  - alertmanagers
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - monitoring.dacamposol.com
+  resources:
+  - silences
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - monitoring.dacamposol.com
+  resources:
+  - silences/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - monitoring.dacamposol.com
+  resources:
+  - silences/status
+  verbs:
+  - get
+  - patch
+  - update
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Release.Namespace }}
+subjects:
+- kind: ServiceAccount
+  name: {{ .Release.Name }}
+roleRef:
+  kind: Role
+  name: {{ .Release.Name }}
+  apiGroup: rbac.authorization.k8s.io

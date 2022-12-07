@@ -1,0 +1,19 @@
+domain: dacamposol.com
+layout:
+- go.kubebuilder.io/v3
+plugins:
+  manifests.sdk.operatorframework.io/v2: {}
+  scorecard.sdk.operatorframework.io/v2: {}
+projectName: monitoring-operator
+repo: github.com/dacamposol/monitoring-operator
+resources:
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: dacamposol.com
+  group: monitoring
+  kind: Silence
+  path: github.com/dacamposol/monitoring-operator/api/v1alpha1
+  version: v1alpha1
+version: "3"

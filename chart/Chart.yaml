@@ -1,0 +1,9 @@
+apiVersion: v2
+name: monitoring-operator
+description: A Helm Chart to manage monitoring resources which aren't provided out of the box with third-part libraries
+
+type: application
+
+version: 0.1.0
+
+appVersion: "0.1.0"
